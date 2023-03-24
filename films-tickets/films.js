@@ -19,7 +19,9 @@ class Film {
 }
 
 const avatar = new Film(1, "Avatar", 150);
+const avengers = new Film(0, "Avangers", 200);
+const penguins = new Film(2, "Penguins", 300);
 
-filmsArray = [avatar];
+filmsArray = [avatar, avengers, penguins];
 
 module.exports = filmsArray;

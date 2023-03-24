@@ -13,8 +13,10 @@ app.param("filmId", (req, res, next, id) => {
         }))
         if (found) {
             req.filmId = found;
+            console.log(filmId);
             next();
         } else {
+            console.log(filmId);
             next(new Error("Your film does not exist"));
         };
         
@@ -35,7 +37,7 @@ app.get("/tickets", (req, res, next) => {
 // })
 
 
-// app.use("/tickets", ticketsRouter);
+app.use("/tickets", ticketsRouter);
 
 app.use("/tickets/:filmId", ticketsRouter);
 
@@ -44,5 +46,5 @@ app.use("/tickets/:filmId", ticketsRouter);
 
 
 app.listen(PORT, () => {
-    console.log("App lintening on port " + PORT);
+    console.log("App listening on port " + PORT);
 })

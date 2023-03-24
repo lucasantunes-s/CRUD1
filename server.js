@@ -2,11 +2,11 @@ const express = require("express");
 const app = express();
 const PORT = 4000;
 const ticketsRouter = require("./Routes/get-route.js");
-const filmsArray = require("./films-tickets/films.js");
+const  filmsArray  = require("./films-tickets/films.js");
 
 
 app.param("filmId", (req, res, next, id) => {
-    let filmId = Number(filmId);
+    let filmId = Number(id);
     try {
         const found = filmsArray.find(((target) => {
             return filmId === target.id;
@@ -24,9 +24,20 @@ app.param("filmId", (req, res, next, id) => {
 });
 
 
-app.use("/tickets", ticketsRouter);
+app.get("/tickets", (req, res, next) => {
+    res.status(200).send(filmsArray);
+})
 
-app.use("/tickets/:filmId", ticketsRouter)
+// app.get("/tickets/filmId/:filmId", (req, res, next) => {
+//     let filmId = req.params.filmId;
+//     console.log(filmId);
+//     res.status(200).send(filmsArray[filmId]);
+// })
+
+
+// app.use("/tickets", ticketsRouter);
+
+app.use("/tickets/:filmId", ticketsRouter);
 
 
 
